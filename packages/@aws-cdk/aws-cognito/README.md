@@ -31,7 +31,7 @@ The two main components of Amazon Cognito are [user
 pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) and [identity
 pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html). User pools are user directories
 that provide sign-up and sign-in options for your app users. Identity pools enable you to grant your users access to
-other AWS services.
+other AWS services. Identity Pool L2 Constructs can be found [here](../aws-cognito-identitypool).
 
 This module is part of the [AWS Cloud Development Kit](https://github.com/aws/aws-cdk) project.
 
@@ -349,7 +349,7 @@ new cognito.UserPool(this, 'myuserpool', {
 });
 ```
 
-Sending emails through SES requires that SES be configured (as described above) in one of the regions - `us-east-1`, `us-west-1`, or `eu-west-1`.
+Sending emails through SES requires that SES be configured (as described above) in a valid SES region.
 If the UserPool is being created in a different region, `sesRegion` must be used to specify the correct SES region.
 
 ```ts
