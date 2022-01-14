@@ -1,5 +1,6 @@
 import { ISamlProvider } from '@aws-cdk/aws-iam';
 import * as logs from '@aws-cdk/aws-logs';
+import * as cdk from '@aws-cdk/core';
 import { CfnOutput, ConcreteDependable, IDependable, Resource, Token } from '@aws-cdk/core';
 import { Construct } from 'constructs';
 import { ClientVpnAuthorizationRule, ClientVpnAuthorizationRuleOptions } from './client-vpn-authorization-rule';
@@ -116,6 +117,13 @@ export interface ClientVpnEndpointOptions {
    * @default TransportProtocol.UDP
    */
   readonly transportProtocol?: TransportProtocol;
+
+  /**
+   * The transport protocol to be used by the VPN session.
+   *
+   * @default TransportProtocol.UDP
+   */
+  readonly tagSpecifications?: Array<CfnClientVpnEndpoint.TagSpecificationProperty | cdk.IResolvable> | cdk.IResolvable;
 
   /**
    * The port number to assign to the Client VPN endpoint for TCP and UDP
@@ -315,6 +323,7 @@ export class ClientVpnEndpoint extends Resource implements IClientVpnEndpoint {
       serverCertificateArn: props.serverCertificateArn,
       splitTunnel: props.splitTunnel,
       transportProtocol: props.transportProtocol,
+      tagSpecifications: props.tagSpecifications,
       vpcId: props.vpc.vpcId,
       vpnPort: props.port,
     });
